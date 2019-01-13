@@ -9,62 +9,20 @@ import {
   View,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-import axios from "axios";
 import { Container, Card } from "native-base";
 import { MonoText } from '../components/StyledText';
-import RecipeCard from '../components/RecipeCard';
-import SearchBar from '../components/SearchBar';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
 
-  state = {
-    recipes: [],
-    text: ''
-  }
-
-  // componentDidMount(){
-  //   axios
-  //   .get("http://www.recipepuppy.com/api?q=chicken")
-  //   .then(({ data: { results } }) => {
-  //   // console.log(results)
-  //     this.setState({recipes: results})
-  //   })
-  //   .catch(err => res.status(422).json(err));
-  // }
-
-  searchRecipe = (event) => {
-    event.preventDefault();
-    console.log('SEARCH FOR: ', this.state.text)
-    axios
-    .get("http://www.recipepuppy.com/api/", {params: {q: this.state.text}})
-    .then(({ data: { results } }) => {
-    // console.log(results)
-      this.setState({recipes: results})
-    })
-    .catch(err => res.status(422).json(err));
-  }
-
-  handleInputChange = (text) => {
-    this.setState({text})
-  }
-
   render() {
     return (
       <View style={styles.container}>
-        <SearchBar search={this.searchRecipe} handleInputChange={this.handleInputChange} />
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          {this.state.recipes.map(recipe => {
-            return (
-            <RecipeCard key={recipe.title} data={recipe}/>
-            )
-            // </div>
-          })}
+          
         </ScrollView>
-
-   
       </View>
     );
   }
