@@ -58,7 +58,7 @@ export default class HomeScreen extends React.Component {
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           {this.state.recipes.map(recipe => {
             return (
-            <RecipeCard key={recipe.title} data={recipe}/>
+            <RecipeCard />
             )
             // </div>
           })}
